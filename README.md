@@ -56,3 +56,23 @@ ID                           HOSTNAME  STATUS  AVAILABILITY  MANAGER STATUS
 0rtuyz07e0wazmxvoed1llmx3 *  manager   Ready   Active        Leader
 1iab1w9m5znyzmh7hpzyn7rrw    worker2   Ready   Active
 4mmca5rxrxxhb0tb7s5du5hpe    worker1   Ready   Active
+```
+Now we create a web service, with 1 replica, on any of the nodes:
+
+```bash
+docker service create --name webservice --replicas 1 --publish 8080:8080 nginxdemos/hello
+```
+
+You can see the status od the service with `docker service ps webservice`. 
+
+```
+vagrant@manager:~$ docker service  ps web
+ID                         NAME   IMAGE            NODE     DESIRED STATE  CURRENT STATE           ERROR
+7m0s3ikyjyvps4xgpk655uv9k  webservice.1  nginxdemos/hello  manager  Running        Running 16 seconds ago
+```
+
+We can also scale up the service if we want:
+
+```bash 
+docker service scale webservice=4
+```
