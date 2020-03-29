@@ -64,7 +64,7 @@ Vagrant.configure("2") do |config|
     end
     
     config.vm.define "manager" do |i|
-      i.vm.box = "mmichal/ubuntu"
+      i.vm.box = "mmichal/ubuntu18_04"
       i.vm.hostname = "manager"
       i.vm.network "private_network", ip: "#{manager_ip}"
       # Proxy
@@ -86,7 +86,7 @@ Vagrant.configure("2") do |config|
 
   instances.each do |instance| 
     config.vm.define instance[:name] do |i|
-      i.vm.box = "ubuntu/trusty64"
+      i.vm.box = "mmichal/ubuntu18_04"
       i.vm.hostname = instance[:name]
       i.vm.network "private_network", ip: "#{instance[:ip]}"
       # Proxy
